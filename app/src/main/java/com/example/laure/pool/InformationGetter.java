@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 
 /**
  * Created by laure on 2016-12-29.
@@ -33,7 +34,11 @@ public class InformationGetter extends AsyncTask<Void,Void,Void> {
         try {
             Document document = Jsoup.connect("https://www.marqueur.com/poolpepin2015").get();
 
-            text = document.select(".t12b_n").first().text();
+
+
+            Element parent = document.select(".t12b_n").first().parent().parent().parent();
+            text = document.select(parent.cssSelector() + " .t12b_n").text();
+
 
         }
         catch (Exception e){e.printStackTrace();}

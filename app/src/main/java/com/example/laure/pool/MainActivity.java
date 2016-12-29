@@ -2,6 +2,7 @@ package com.example.laure.pool;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.TableLayout;
 import android.widget.TextView;
 
 import org.jsoup.Jsoup;
@@ -9,15 +10,15 @@ import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView textView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        textView = (TextView) findViewById(R.id.textView);
+        TableLayout tableLayout = (TableLayout) findViewById(R.id.tableLayout);
 
-        InformationGetter informationGetter = new InformationGetter(this, textView);
+        InformationGetter informationGetter = new InformationGetter(this, tableLayout);
         informationGetter.execute();
 
 

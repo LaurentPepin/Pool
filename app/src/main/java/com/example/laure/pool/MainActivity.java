@@ -2,6 +2,7 @@ package com.example.laure.pool;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.ScrollView;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
@@ -17,8 +18,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         TableLayout tableLayout = (TableLayout) findViewById(R.id.tableLayout);
+        TextView textView = (TextView) findViewById(R.id.textViewDay);
 
-        InformationGetter informationGetter = new InformationGetter(this, tableLayout);
+        InformationGetter informationGetter = new InformationGetter(this,tableLayout, textView);
         informationGetter.execute();
 
 

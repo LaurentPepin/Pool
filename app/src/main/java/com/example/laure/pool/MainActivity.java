@@ -22,10 +22,15 @@ public class MainActivity extends AppCompatActivity {
 
         InformationGetter informationGetter = new InformationGetter(this,tableLayout, textView);
         informationGetter.execute();
+    }
 
-
-
-
-
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        TableLayout tableLayout = (TableLayout) findViewById(R.id.tableLayout);
+        TextView textView = (TextView) findViewById(R.id.textViewDay);
+        tableLayout.removeAllViews();
+        InformationGetter informationGetter = new InformationGetter(this,tableLayout, textView);
+        informationGetter.execute();
     }
 }

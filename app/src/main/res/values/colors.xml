@@ -4,6 +4,9 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="black">#000</color>
-    <color name="colorTitle">#006699</color>
+    <color name="colorTitle">#303F9F</color>
+    <color name="colorTitleSec">#A8ABBF</color>
+    <color name="colorSec">#006699</color>
     <color name="white">#FFF</color>
+    <color name="lightGrey">#e6e6e6</color>
 </resources>

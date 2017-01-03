@@ -1,6 +1,7 @@
 <resources>
-    <string name="app_name">Pool</string>
+    <string name="app_name">PoolPepin2015</string>
     <string name="Classement">Classement</string>
     <string name="Hier">Hier</string>
     <string name="Total">Total</string>
+    <string name="Direct">Direct</string>
 </resources>

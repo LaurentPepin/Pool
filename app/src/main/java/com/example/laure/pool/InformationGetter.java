@@ -116,8 +116,6 @@ public class InformationGetter extends AsyncTask<Void,Void,Void> {
     }
 
 
-
-
     @Override
     protected void onPostExecute(Void aVoid) {
         super.onPostExecute(aVoid);
@@ -212,8 +210,17 @@ public class InformationGetter extends AsyncTask<Void,Void,Void> {
             if(j==1 || j==4){
                 textView.setBackgroundResource(R.drawable.borderleft2);
             }
-            else if (j==2 || j==5){
+            else if (j==2){
                 textView.setBackgroundResource(R.drawable.bordermiddle1);
+            }
+            else if(j==5){
+                if(i!=nPoolers-1) {
+                    textView.setBackgroundResource(R.drawable.maincolumn);
+                }
+                else {
+                    textView.setBackgroundResource(R.drawable.maincolumnlastrow);
+                    //tableRow.setBackgroundResource(R.drawable.);
+                }
             }
 
             tableRow.addView(textView);

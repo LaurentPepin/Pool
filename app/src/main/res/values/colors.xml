@@ -9,4 +9,5 @@
     <color name="colorSec">#006699</color>
     <color name="white">#FFF</color>
     <color name="lightGrey">#e6e6e6</color>
+    <color name="mainColumn">#a1abde</color>
 </resources>

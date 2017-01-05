@@ -378,6 +378,79 @@
                         android:layout_weight="0.15" />
                 </TableRow>
             </TableLayout>
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/tableLayoutYesterdayTable"
+                android:layout_marginTop="30dp"
+                android:id="@+id/tableLayoutYesterdayPlayersTable"
+                >
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorTitle"
+                    android:padding="10px"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:background="@drawable/border"
+                        android:text="MEILLEURS POINTEURS HIER"
+                        android:paddingLeft="5dp"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:layout_weight="1" />
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/titlerowsec"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text=""
+                        android:textColor="@color/white"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:layout_weight="0.05" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text=" Pointeurs"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:layout_weight="0.50" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="Pooler"
+                        android:background="@drawable/borderleft1"
+                        android:textColor="@color/white"
+                        android:gravity="center"
+                        android:layout_weight="0.35" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="PTS"
+                        android:background="@drawable/bordermiddle1"
+                        android:textColor="@color/white"
+                        android:gravity="center"
+                        android:layout_weight="0.10" />
+
+
+                </TableRow>
+            </TableLayout>
         </RelativeLayout>
     </ScrollView>
 

@@ -21,8 +21,10 @@ public class MainActivity extends AppCompatActivity {
         TextView textView = (TextView) findViewById(R.id.textViewDay);
         TableLayout tableLayoutTotal = (TableLayout) findViewById(R.id.tableLayoutTotalTable);
         TableLayout tableLayoutYesterday = (TableLayout) findViewById(R.id.tableLayoutYesterdayTable);
+        TableLayout tableLayoutYesterdayPlayers = (TableLayout) findViewById(R.id.tableLayoutYesterdayPlayersTable);
 
-        InformationGetter informationGetter = new InformationGetter(this,tableLayout, textView, tableLayoutTotal, tableLayoutYesterday);
+        InformationGetter informationGetter = new InformationGetter(this,tableLayout, textView, tableLayoutTotal, tableLayoutYesterday,
+                tableLayoutYesterdayPlayers);
         informationGetter.execute();
     }
     /*

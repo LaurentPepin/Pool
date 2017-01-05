@@ -29,6 +29,7 @@ public class InformationGetter extends AsyncTask<Void,Void,Void> {
     TableLayout tableLayout;
     TableLayout tableLayoutTotal;
     TableLayout tableLayoutYesterday;
+    TableLayout tableLayoutYesterdayPlayers;
     TextView textView;
     String[] poolersNames;
     int nPoolers;
@@ -37,13 +38,18 @@ public class InformationGetter extends AsyncTask<Void,Void,Void> {
     int[] yesterdayPtsOrdered;
     int[] yesterdayPjOrdered;
     String[] yesterdayPoolersOrdered;
+    String[] playersNames;
+    String[] playersOwners;
+    int[] playersPointsYesterday;
 
-    public InformationGetter(Context ctx,TableLayout tb, TextView tx, TableLayout tableLayoutTot, TableLayout tableLayoutY){
+    public InformationGetter(Context ctx,TableLayout tb, TextView tx, TableLayout tableLayoutTot, TableLayout tableLayoutY,
+                             TableLayout tableLayoutYP){
         context = ctx;
         tableLayout = tb;
         textView = tx;
         tableLayoutTotal = tableLayoutTot;
         tableLayoutYesterday = tableLayoutY;
+        tableLayoutYesterdayPlayers = tableLayoutYP;
     }
 
     @Override
@@ -89,6 +95,22 @@ public class InformationGetter extends AsyncTask<Void,Void,Void> {
     public void getOverallInformation(Document document, Element element){
         getFullNames(document,element);
         getStats(document,element);
+        getPlayersNames(document);
+    }
+
+    public void getPlayersNames(Document document){
+
+        String fullStringNames = document.select(".tooltip, .tooltipstered").text();
+        String[] playersNamesSeparated = fullStringNames.split(" ");
+        playersNames = new String[playersNamesSeparated.length/2];
+        for(int i=0; i<playersNamesSeparated.length/2;i++){
+            playersNamesSeparated[i*2] = playersNamesSeparated[i*2].toLowerCase();
+            String firstName = playersNamesSeparated[i*2].substring(0,1).toUpperCase() + playersNamesSeparated[i*2].substring(1);
+            playersNamesSeparated[i*2+1] = playersNamesSeparated[i*2+1].toLowerCase();
+            String lastName = playersNamesSeparated[i*2+1].substring(0,1).toUpperCase() +
+                    playersNamesSeparated[i*2+1].substring(1);
+            playersNames[i] = firstName+ " " + lastName;
+        }
     }
 
     public void getFullNames (Document document, Element element){
@@ -103,10 +125,13 @@ public class InformationGetter extends AsyncTask<Void,Void,Void> {
         for(int i=0; i<nPoolers; i++){
             //names[i] = strings[i*2] + " " + strings[i*2+1].substring(0,1) + ".";
             poolersNames[i] = separatedNames[i*2];
+            poolersNames[i] = poolersNames[i].toLowerCase();
+            poolersNames[i] = poolersNames[i].substring(0,1).toUpperCase() + poolersNames[i].substring(1);
             int index = poolersNames[i].indexOf('-');
             if(index>0){
-                poolersNames[i] = poolersNames[i].substring(0,index+2) + ".";
+                poolersNames[i] = poolersNames[i].substring(0,index+1) + poolersNames[i].substring(index+1,index+2).toUpperCase() + ".";
             }
+
         }
     }
 
@@ -127,7 +152,6 @@ public class InformationGetter extends AsyncTask<Void,Void,Void> {
         }
     }
 
-
     @Override
     protected void onPostExecute(Void aVoid) {
         super.onPostExecute(aVoid);
@@ -142,6 +166,7 @@ public class InformationGetter extends AsyncTask<Void,Void,Void> {
 
         setYesterdayInformationTable();
 
+        setYesterdayPlayersTable();
 
     }
 
@@ -462,7 +487,7 @@ public class InformationGetter extends AsyncTask<Void,Void,Void> {
 
                     previousMax = stats[i * 4 + 1];
                     maxIndex = i;
-                    Log.e(TAG, ""+maxIndex);
+
                 }
             }
             done[maxIndex] = true;
@@ -472,7 +497,93 @@ public class InformationGetter extends AsyncTask<Void,Void,Void> {
         }
     }
 
+    public void setYesterdayPlayersTable(){
 
+        TableLayout tableLayoutNew = new TableLayout(context);
+
+        sortYesterdayStats();
+
+        for(int i=0; i<nPoolers; i++){
+
+            TableRow tableRow = new TableRow(context);
+            tableRow.setGravity(Gravity.CENTER);
+            tableRow.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT, 1.0f));
+
+            setTableRowBackground(i,tableRow);
+
+            fillTableRowYesterdayPlayers(i,tableRow);
+
+            tableLayoutNew.addView(tableRow);
+        }
+        ScrollView scrollView = new ScrollView(context);
+        scrollView.addView(tableLayoutNew);
+        tableLayoutYesterdayPlayers.addView(scrollView);
+        tableLayoutYesterdayPlayers.setBackgroundResource(R.drawable.border);
+
+
+
+    }
+
+    public void fillTableRowYesterdayPlayers(int i,TableRow tableRow){
+
+        for(int j=0; j<4; j++){
+            TextView textView = new TextView(context);
+            textView.setGravity(Gravity.CENTER);
+            String text = "";
+
+            if(j==0){
+                text = "";
+            }
+            else if(j==1) {
+                text = " " + playersNames[i];
+                textView.setGravity(Gravity.NO_GRAVITY);
+            }
+            else if (j==2){
+                //text = "" + playersOwners[i];
+            }
+            else{
+                //text = "" + playersPointsYesterday[i];
+            }
+
+            textView.setText(text);
+            textView.setPadding(2,2,2,2);
+            textView.setTextColor(ContextCompat.getColor(context,R.color.black));
+            TableRow.LayoutParams layoutParams;
+
+            if(j==0){
+                layoutParams = new TableRow.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT,0.05f);
+            }
+            else if(j==1){
+                layoutParams = new TableRow.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT,0.50f);
+            }
+            else if(j==2){
+                layoutParams = new TableRow.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT,0.35f);
+            }
+            else {
+                layoutParams = new TableRow.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT,0.10f);
+            }
+
+            textView.setLayoutParams(layoutParams);
+
+            if(j==0){
+                //textView.setBackgroundResource(R.drawable.borderright1);
+            }
+            else if(j==2){
+                textView.setBackgroundResource(R.drawable.borderleft1);
+            }
+            else if (j==3){
+                if(i!=nPoolers-1) {
+                    textView.setBackgroundResource(R.drawable.maincolumnlastcolumn);
+                }
+                else {
+                    textView.setBackgroundResource(R.drawable.maincolumnlastcolumnlastrow);
+                }
+            }
+
+
+            tableRow.addView(textView);
+        }
+    }
 
 }
 

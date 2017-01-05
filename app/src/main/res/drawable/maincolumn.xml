@@ -3,15 +3,15 @@
 
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:bottom="-2dp" android:top="-2dp">
+<item android:bottom="-2dp" android:top="-2dp">
 
-        <shape>
-            <solid android:color="@color/mainColumn"></solid>
-            <stroke android:width="2px" android:color="@color/colorTitle"/>
-        </shape>
+    <shape>
+        <solid android:color="@color/mainColumn"></solid>
+        <stroke android:width="2px" android:color="@color/colorTitle"/>
+    </shape>
 
 
-    </item>
+</item>
 
 
 </layer-list>

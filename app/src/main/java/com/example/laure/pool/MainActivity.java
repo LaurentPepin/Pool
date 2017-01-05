@@ -19,11 +19,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         TableLayout tableLayout = (TableLayout) findViewById(R.id.tableLayout);
         TextView textView = (TextView) findViewById(R.id.textViewDay);
+        TableLayout tableLayoutTotal = (TableLayout) findViewById(R.id.tableLayoutTotalTable);
+        TableLayout tableLayoutYesterday = (TableLayout) findViewById(R.id.tableLayoutYesterdayTable);
 
-        InformationGetter informationGetter = new InformationGetter(this,tableLayout, textView);
+        InformationGetter informationGetter = new InformationGetter(this,tableLayout, textView, tableLayoutTotal, tableLayoutYesterday);
         informationGetter.execute();
     }
-
+    /*
     @Override
     protected void onRestart() {
         super.onRestart();
@@ -33,4 +35,5 @@ public class MainActivity extends AppCompatActivity {
         InformationGetter informationGetter = new InformationGetter(this,tableLayout, textView);
         informationGetter.execute();
     }
+    */
 }

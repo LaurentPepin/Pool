@@ -27,15 +27,23 @@ public class InformationGetter extends AsyncTask<Void,Void,Void> {
     String TAG = "InformationGetter";
     Context context;
     TableLayout tableLayout;
+    TableLayout tableLayoutTotal;
+    TableLayout tableLayoutYesterday;
     TextView textView;
     String[] poolersNames;
     int nPoolers;
     int[] stats;
+    Element mainTable;
+    int[] yesterdayPtsOrdered;
+    int[] yesterdayPjOrdered;
+    String[] yesterdayPoolersOrdered;
 
-    public InformationGetter(Context ctx,TableLayout tb, TextView tx){
+    public InformationGetter(Context ctx,TableLayout tb, TextView tx, TableLayout tableLayoutTot, TableLayout tableLayoutY){
         context = ctx;
         tableLayout = tb;
         textView = tx;
+        tableLayoutTotal = tableLayoutTot;
+        tableLayoutYesterday = tableLayoutY;
     }
 
     @Override
@@ -43,27 +51,31 @@ public class InformationGetter extends AsyncTask<Void,Void,Void> {
         try {
             Document document = Jsoup.connect("https://www.marqueur.com/poolpepin2015").get();
 
-            String title = document.select(".titre").first().text();
-            if(title.equals("EN DIRECT")){
-                isLive = true;
-            }
-
-            Element mainTable;
-
-            if(isLive){
-                findNPoolersLive(document);
-                mainTable = document.select(".titre").get(1).parent().parent().parent().parent();
-            }
-            else {
-                mainTable = document.select(".t12b_n").first().parent().parent().parent();
-            }
-
-            getInformation(document,mainTable);
+            findIfLive(document);
+            selectMainTable(document);
+            getOverallInformation(document,mainTable);
 
         }
         catch (Exception e){e.printStackTrace();}
 
         return null;
+    }
+
+    public void selectMainTable(Document document){
+        if(isLive){
+            findNPoolersLive(document);
+            mainTable = document.select(".titre").get(1).parent().parent().parent().parent();
+        }
+        else {
+            mainTable = document.select(".t12b_n").first().parent().parent().parent();
+        }
+    }
+
+    public void findIfLive(Document document){
+        String title = document.select(".titre").first().text();
+        if(title.equals("EN DIRECT")){
+            isLive = true;
+        }
     }
 
     public void findNPoolersLive (Document document){
@@ -74,7 +86,7 @@ public class InformationGetter extends AsyncTask<Void,Void,Void> {
         nPoolers = separatedNames.length / 2;
     }
 
-    public void getInformation(Document document, Element element){
+    public void getOverallInformation(Document document, Element element){
         getFullNames(document,element);
         getStats(document,element);
     }
@@ -124,6 +136,16 @@ public class InformationGetter extends AsyncTask<Void,Void,Void> {
             textView.setText(R.string.Direct);
         }
 
+        setOverallInformationTable();
+
+        setTotalInformationTable();
+
+        setYesterdayInformationTable();
+
+
+    }
+
+    public void setOverallInformationTable(){
         TableLayout tableLayoutNew = new TableLayout(context);
 
         for(int i=0; i<nPoolers; i++){
@@ -165,30 +187,33 @@ public class InformationGetter extends AsyncTask<Void,Void,Void> {
 
     public void fillTableRow(int i,TableRow tableRow){
 
-        for(int j=0; j<7; j++){
+        for(int j=0; j<8; j++){
             TextView textView = new TextView(context);
             textView.setGravity(Gravity.CENTER);
             String text = "";
 
-            if(j==0) {
-                text = " " + Integer.toString(i + 1) + " " + poolersNames[i];
+            if(j==0){
+                text = "" + Integer.toString(i+1);
+            }
+            else if(j==1) {
+                text = " " + poolersNames[i];
                 textView.setGravity(Gravity.NO_GRAVITY);
             }
-            else if (j==1){
+            else if (j==2){
                 text = "" + stats[i*4];
             }
-            else if (j==2){
+            else if (j==3){
                 text = "" + stats[i*4+1];
             }
-            else if (j==3){
+            else if (j==4){
                 double moy = stats[i*4+1]*1.0f/stats[i*4];
                 text = String.format("%.2f", moy);
 
             }
-            else if (j==4){
+            else if (j==5){
                 text = "" + stats[i*4+2];
             }
-            else if (j==5){
+            else if (j==6){
                 text = "" + stats[i*4+3];
             }
             else {
@@ -201,31 +226,253 @@ public class InformationGetter extends AsyncTask<Void,Void,Void> {
             TableRow.LayoutParams layoutParams;
 
             if(j==0){
-                layoutParams = new TableRow.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT,0.3f);
+                layoutParams = new TableRow.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT,0.05f);
+            }
+            else if(j==1){
+                layoutParams = new TableRow.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT,0.25f);
             }
             else {
                 layoutParams = new TableRow.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT,0.1f);
             }
             textView.setLayoutParams(layoutParams);
-            if(j==1 || j==4){
+            if(j==0){
+                textView.setBackgroundResource(R.drawable.borderright1);
+            }
+            else if(j==2 || j==5){
                 textView.setBackgroundResource(R.drawable.borderleft2);
             }
-            else if (j==2){
+            else if (j==3){
                 textView.setBackgroundResource(R.drawable.bordermiddle1);
             }
-            else if(j==5){
+            else if(j==6){
                 if(i!=nPoolers-1) {
                     textView.setBackgroundResource(R.drawable.maincolumn);
                 }
                 else {
                     textView.setBackgroundResource(R.drawable.maincolumnlastrow);
-                    //tableRow.setBackgroundResource(R.drawable.);
                 }
             }
 
             tableRow.addView(textView);
         }
     }
+
+    public void setTotalInformationTable(){
+        TableLayout tableLayoutNew = new TableLayout(context);
+
+        for(int i=0; i<nPoolers; i++){
+
+            TableRow tableRow = new TableRow(context);
+            tableRow.setGravity(Gravity.CENTER);
+            tableRow.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT, 1.0f));
+
+            setTableRowBackground(i,tableRow);
+
+            fillTableRowTotal(i,tableRow);
+
+            tableLayoutNew.addView(tableRow);
+        }
+        ScrollView scrollView = new ScrollView(context);
+        scrollView.addView(tableLayoutNew);
+        tableLayoutTotal.addView(scrollView);
+        tableLayoutTotal.setBackgroundResource(R.drawable.border);
+    }
+
+    public void fillTableRowTotal(int i,TableRow tableRow){
+
+        for(int j=0; j<6; j++){
+            TextView textView = new TextView(context);
+            textView.setGravity(Gravity.CENTER);
+            String text = "";
+
+            if(j==0){
+                text = "" + Integer.toString(i+1);
+            }
+            else if(j==1) {
+                text = " " + poolersNames[i];
+                textView.setGravity(Gravity.NO_GRAVITY);
+            }
+            else if (j==2){
+                text = "" + stats[i*4+2];
+            }
+            else if (j==3){
+                text = "" + stats[i*4+3];
+            }
+            else if (j==4){
+                double moy = stats[i*4+3]*1.0f/stats[i*4+2];
+                text = String.format("%.2f", moy);
+
+            }
+            else {
+                int dif = stats[3]- stats[i*4+3];
+                if(dif==0){
+                    text = "-";
+                }
+                else {
+                    text = "+" + Integer.toString(dif);
+                }
+            }
+            textView.setText(text);
+            textView.setPadding(2,2,2,2);
+            textView.setTextColor(ContextCompat.getColor(context,R.color.black));
+            TableRow.LayoutParams layoutParams;
+
+            if(j==0){
+                layoutParams = new TableRow.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT,0.05f);
+            }
+            else if(j==1){
+                layoutParams = new TableRow.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT,0.35f);
+            }
+            else {
+                layoutParams = new TableRow.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT,0.15f);
+            }
+
+            textView.setLayoutParams(layoutParams);
+
+            if(j==0){
+                textView.setBackgroundResource(R.drawable.borderright1);
+            }
+            else if(j==2){
+                textView.setBackgroundResource(R.drawable.borderleft2);
+            }
+            else if (j==3){
+                if(i!=nPoolers-1) {
+                    textView.setBackgroundResource(R.drawable.maincolumn);
+                }
+                else {
+                    textView.setBackgroundResource(R.drawable.maincolumnlastrow);
+                }
+            }
+            else if(j==5){
+                textView.setBackgroundResource(R.drawable.borderleft1);
+            }
+
+            tableRow.addView(textView);
+        }
+    }
+
+    public void setYesterdayInformationTable(){
+        TableLayout tableLayoutNew = new TableLayout(context);
+
+        sortYesterdayStats();
+
+        for(int i=0; i<nPoolers; i++){
+
+            TableRow tableRow = new TableRow(context);
+            tableRow.setGravity(Gravity.CENTER);
+            tableRow.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT, 1.0f));
+
+            setTableRowBackground(i,tableRow);
+
+            fillTableRowYesterday(i,tableRow);
+
+            tableLayoutNew.addView(tableRow);
+        }
+        ScrollView scrollView = new ScrollView(context);
+        scrollView.addView(tableLayoutNew);
+        tableLayoutYesterday.addView(scrollView);
+        tableLayoutYesterday.setBackgroundResource(R.drawable.border);
+    }
+
+    public void fillTableRowYesterday(int i,TableRow tableRow){
+
+        for(int j=0; j<6; j++){
+            TextView textView = new TextView(context);
+            textView.setGravity(Gravity.CENTER);
+            String text = "";
+
+            if(j==0){
+                text = "" + Integer.toString(i+1);
+            }
+            else if(j==1) {
+                text = " " + yesterdayPoolersOrdered[i];
+                textView.setGravity(Gravity.NO_GRAVITY);
+            }
+            else if (j==2){
+                text = "" + yesterdayPjOrdered[i];
+            }
+            else if (j==3){
+                text = "" + yesterdayPtsOrdered[i];
+            }
+            else if (j==4){
+                double moy = yesterdayPtsOrdered[i]*1.0f/yesterdayPjOrdered[i];
+                text = String.format("%.2f", moy);
+
+            }
+            else {
+                int dif = yesterdayPtsOrdered[0]- yesterdayPtsOrdered[i];
+                if(dif==0){
+                    text = "-";
+                }
+                else {
+                    text = "+" + Integer.toString(dif);
+                }
+            }
+            textView.setText(text);
+            textView.setPadding(2,2,2,2);
+            textView.setTextColor(ContextCompat.getColor(context,R.color.black));
+            TableRow.LayoutParams layoutParams;
+
+            if(j==0){
+                layoutParams = new TableRow.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT,0.05f);
+            }
+            else if(j==1){
+                layoutParams = new TableRow.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT,0.35f);
+            }
+            else {
+                layoutParams = new TableRow.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT,0.15f);
+            }
+
+            textView.setLayoutParams(layoutParams);
+
+            if(j==0){
+                textView.setBackgroundResource(R.drawable.borderright1);
+            }
+            else if(j==2){
+                textView.setBackgroundResource(R.drawable.borderleft2);
+            }
+            else if (j==3){
+                if(i!=nPoolers-1) {
+                    textView.setBackgroundResource(R.drawable.maincolumn);
+                }
+                else {
+                    textView.setBackgroundResource(R.drawable.maincolumnlastrow);
+                }
+            }
+            else if(j==5){
+                textView.setBackgroundResource(R.drawable.borderleft1);
+            }
+
+            tableRow.addView(textView);
+        }
+    }
+
+    public void sortYesterdayStats(){
+
+        yesterdayPtsOrdered = new int[nPoolers];
+        yesterdayPjOrdered = new int[nPoolers];
+        yesterdayPoolersOrdered = new String[nPoolers];
+        boolean[] done = new boolean[nPoolers];
+
+        for(int j=0; j<nPoolers;j++) {
+            int previousMax = 0;
+            int maxIndex = 0;
+            for (int i = 0; i < nPoolers; i++) {
+                if (stats[i * 4 + 1] > previousMax && !done[i]) {
+
+                    previousMax = stats[i * 4 + 1];
+                    maxIndex = i;
+                    Log.e(TAG, ""+maxIndex);
+                }
+            }
+            done[maxIndex] = true;
+            yesterdayPtsOrdered[j] = stats[maxIndex*4+1];
+            yesterdayPjOrdered[j] = stats[maxIndex*4];
+            yesterdayPoolersOrdered[j] = poolersNames[maxIndex];
+        }
+    }
+
+
 
 }
 

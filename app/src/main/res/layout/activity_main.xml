@@ -26,7 +26,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:background="@drawable/border"
-                android:id="@+id/tableLayoutOverallTable"
+                android:id="@+id/tableLayoutOverallStats"
                 >
 
                 <TableRow
@@ -41,7 +41,6 @@
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:background="@drawable/border"
-
                         android:text="GÉNÉRAL"
                         android:textColor="@color/white"
                         android:paddingLeft="5dp"
@@ -53,7 +52,7 @@
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:text="Hier"
-                        android:id="@+id/textViewDay"
+                        android:id="@+id/textViewOverallStatsTableSubtitle"
                         android:background="@drawable/border"
                         android:textColor="@color/white"
                         android:gravity="center"
@@ -160,9 +159,9 @@
             <TableLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@+id/tableLayoutOverallTable"
+                android:layout_below="@+id/tableLayoutOverallStats"
                 android:layout_marginTop="30dp"
-                android:id="@+id/tableLayoutTotalTable"
+                android:id="@+id/tableLayoutTotalStats"
                 >
                 <TableRow
                     android:layout_width="match_parent"
@@ -271,9 +270,9 @@
             <TableLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@+id/tableLayoutTotalTable"
+                android:layout_below="@+id/tableLayoutTotalStats"
                 android:layout_marginTop="30dp"
-                android:id="@+id/tableLayoutYesterdayTable"
+                android:id="@+id/tableLayoutLastestStats"
                 >
                 <TableRow
                     android:layout_width="match_parent"
@@ -287,6 +286,7 @@
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:background="@drawable/border"
+                        android:id="@+id/textViewLastestStatsTableTitle"
                         android:text="HIER"
                         android:paddingLeft="5dp"
                         android:textColor="@color/white"
@@ -382,7 +382,7 @@
             <TableLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@+id/tableLayoutYesterdayTable"
+                android:layout_below="@+id/tableLayoutLastestStats"
                 android:layout_marginTop="30dp"
                 android:id="@+id/tableLayoutYesterdayPlayersTable"
                 >
@@ -399,6 +399,7 @@
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:background="@drawable/border"
                         android:text="MEILLEURS POINTEURS HIER"
+                        android:id="@+id/textViewLastestBestPlayersTableTitle"
                         android:paddingLeft="5dp"
                         android:textColor="@color/white"
                         android:textStyle="bold"

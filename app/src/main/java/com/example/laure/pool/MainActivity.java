@@ -17,14 +17,18 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        TableLayout tableLayout = (TableLayout) findViewById(R.id.tableLayout);
-        TextView textView = (TextView) findViewById(R.id.textViewDay);
-        TableLayout tableLayoutTotal = (TableLayout) findViewById(R.id.tableLayoutTotalTable);
-        TableLayout tableLayoutYesterday = (TableLayout) findViewById(R.id.tableLayoutYesterdayTable);
-        TableLayout tableLayoutYesterdayPlayers = (TableLayout) findViewById(R.id.tableLayoutYesterdayPlayersTable);
 
-        InformationGetter informationGetter = new InformationGetter(this,tableLayout, textView, tableLayoutTotal, tableLayoutYesterday,
-                tableLayoutYesterdayPlayers);
+        TableLayout tableLayoutOverallStats = (TableLayout) findViewById(R.id.tableLayoutOverallStats);
+        TableLayout tableLayoutTotalStats = (TableLayout) findViewById(R.id.tableLayoutTotalStats);
+        TableLayout tableLayoutLastestStats = (TableLayout) findViewById(R.id.tableLayoutLastestStats);
+        //TableLayout tableLayoutYesterdayPlayers = (TableLayout) findViewById(R.id.tableLayoutYesterdayPlayersTable);
+
+        TextView textViewOverallStatsTableSubtitle = (TextView) findViewById(R.id.textViewOverallStatsTableSubtitle);
+        TextView textViewLastestStatsTableTitle = (TextView) findViewById(R.id.textViewLastestStatsTableTitle);
+        TextView textViewLastestBestPlayersTableTitle = (TextView) findViewById(R.id.textViewLastestBestPlayersTableTitle);
+
+        InformationGetter informationGetter = new InformationGetter(this,tableLayoutOverallStats, tableLayoutTotalStats, tableLayoutLastestStats,
+                textViewOverallStatsTableSubtitle, textViewLastestStatsTableTitle, textViewLastestBestPlayersTableTitle);
         informationGetter.execute();
     }
     /*

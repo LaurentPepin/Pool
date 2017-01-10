@@ -30,12 +30,14 @@ public class InformationGetter extends AsyncTask<Void,Void,Void> {
     TableLayout tableLayoutOverallStats;
     TableLayout tableLayoutTotalStats;
     TableLayout tableLayoutLastestStats;
+    TableLayout tableLayoutLastestBestPlayers;
 
     TextView textViewOverallStatsTableSubtitle;
     TextView textViewLastestStatsTableTitle;
     TextView textViewLastestBestPlayersTableTitle;
 
     PoolersStats poolersStats = new PoolersStats();
+    PlayersStats playersStats = new PlayersStats();
 
     GeneralFunctions generalFunctions;
     Document document;
@@ -45,6 +47,7 @@ public class InformationGetter extends AsyncTask<Void,Void,Void> {
                              TableLayout tableLayoutOverallStats,
                              TableLayout tableLayoutTotalStats,
                              TableLayout tableLayoutLastestStats,
+                             TableLayout tableLayoutLastestBestPlayers,
                              TextView textViewOverallStatsTableSubtitle,
                              TextView textViewLastestStatsTableTitle,
                              TextView textViewLastestBestPlayersTableTitle
@@ -53,6 +56,7 @@ public class InformationGetter extends AsyncTask<Void,Void,Void> {
         this.tableLayoutOverallStats = tableLayoutOverallStats;
         this.tableLayoutTotalStats = tableLayoutTotalStats;
         this.tableLayoutLastestStats = tableLayoutLastestStats;
+        this.tableLayoutLastestBestPlayers = tableLayoutLastestBestPlayers;
         this.textViewOverallStatsTableSubtitle = textViewOverallStatsTableSubtitle;
         this.textViewLastestStatsTableTitle = textViewLastestStatsTableTitle;
         this.textViewLastestBestPlayersTableTitle = textViewLastestBestPlayersTableTitle;
@@ -69,6 +73,7 @@ public class InformationGetter extends AsyncTask<Void,Void,Void> {
 
             poolersStatsTablesManager = new PoolersStatsTablesManager(context,isLive);
             poolersStatsTablesManager.gatherPoolersStats(poolersStats, document);
+            poolersStatsTablesManager.gatherPlayersStats(poolersStats.nPoolers, playersStats, document);
 
         }
         catch (Exception e){e.printStackTrace();}
@@ -89,6 +94,7 @@ public class InformationGetter extends AsyncTask<Void,Void,Void> {
         poolersStatsTablesManager.createTable(poolersStats, 1,tableLayoutOverallStats);
         poolersStatsTablesManager.createTable(poolersStats, 2,tableLayoutTotalStats);
         poolersStatsTablesManager.createTable(poolersStats, 3,tableLayoutLastestStats);
+        //poolersStatsTablesManager.createTable(playersStats, 4, tableLayoutLastestBestPlayers);
 
 
 

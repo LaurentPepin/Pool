@@ -44,8 +44,13 @@ public class TableRowFiller {
                 text = "" + poolersStats.lastestPTS[i];
                 textView.setBackgroundResource(R.drawable.bordermiddle1);
             } else if (j == 4) {
-                double moy = poolersStats.lastestPTS[i] * 1.0f / poolersStats.lastestGP[i];
-                text = String.format("%.2f", moy);
+                if(poolersStats.lastestGP[i]!=0) {
+                    double moy = poolersStats.lastestPTS[i] * 1.0f / poolersStats.lastestGP[i];
+                    text = String.format("%.2f", moy);
+                }
+                else {
+                    text = "0.00";
+                }
             } else if (j == 5) {
                 text = "" + poolersStats.totalGP[i];
                 textView.setBackgroundResource(R.drawable.borderleft2);
@@ -57,8 +62,13 @@ public class TableRowFiller {
                     textView.setBackgroundResource(R.drawable.maincolumnlastrow);
                 }
             } else {
-                double moy = poolersStats.totalPTS[i] * 1.0f / poolersStats.totalGP[i];
-                text = String.format("%.2f", moy);
+                if(poolersStats.totalGP[i]!=0) {
+                    double moy = poolersStats.totalPTS[i] * 1.0f / poolersStats.totalGP[i];
+                    text = String.format("%.2f", moy);
+                }
+                else {
+                    text = "0.00";
+                }
             }
             textView.setText(text);
             textView.setPadding(2, 2, 2, 2);
@@ -94,8 +104,13 @@ public class TableRowFiller {
                     textView.setBackgroundResource(R.drawable.maincolumnlastrow);
                 }
             } else if (j == 4) {
-                double moy = poolersStats.totalPTS[i] * 1.0f / poolersStats.totalGP[i];
-                text = String.format("%.2f", moy);
+                if(poolersStats.totalGP[i]!=0) {
+                    double moy = poolersStats.totalPTS[i] * 1.0f / poolersStats.totalGP[i];
+                    text = String.format("%.2f", moy);
+                }
+                else {
+                    text = "0.00";
+                }
 
             } else {
                 int dif = poolersStats.totalPTS[0] - poolersStats.totalPTS[i];
@@ -148,8 +163,13 @@ public class TableRowFiller {
                 }
             }
             else if (j==4){
-                double moy = lastestPTSOrdered[i]*1.0f/lastestGPOrdered[i];
-                text = String.format("%.2f", moy);
+                if(lastestGPOrdered[i]!=0) {
+                    double moy = lastestPTSOrdered[i] * 1.0f / lastestGPOrdered[i];
+                    text = String.format("%.2f", moy);
+                }
+                else {
+                    text = "0.00";
+                }
 
             }
             else {
@@ -185,11 +205,17 @@ public class TableRowFiller {
                     previousMax = poolersStats.lastestPTS[i];
                     maxIndex = i;
                 }
+                else if(poolersStats.lastestPTS[i] >= previousMax && !done[i]){
+                    previousMax = poolersStats.lastestPTS[i];
+                    maxIndex = i;
+                }
             }
             done[maxIndex] = true;
             lastestPTSOrdered[j] = poolersStats.lastestPTS[maxIndex];
             lastestGPOrdered[j] = poolersStats.lastestGP[maxIndex];
             lastestPoolersOrdered[j] = poolersStats.poolersNames[maxIndex];
+
+
         }
     }
 

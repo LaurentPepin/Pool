@@ -62,6 +62,21 @@ public class PoolersStatsTablesManager {
         tableLayout.setBackgroundResource(R.drawable.border);
     }
 
+    public void gatherPlayersStats (int nPoolers, PlayersStats playersStats, Document document){
+        String fullStringNames = document.select(".tooltip, .tooltipstered").text();
+        String[] playersNamesSeparated = fullStringNames.split(" ");
+        String[] allPlayers = new String[playersNamesSeparated.length/2];
+        for(int i=0; i<playersNamesSeparated.length/2;i++){
+            String firstName = formatStringToNormal(playersNamesSeparated[i*2]);
+            String lastName = formatStringToNormal(playersNamesSeparated[i*2+1]);
+            allPlayers[i] = firstName+ " " + lastName;
+        }
+        playersStats.lastestBestPlayers = new String[nPoolers];
+        for(int i=0; i<nPoolers; i++){
+            playersStats.lastestBestPlayers[i] = allPlayers[i];
+        }
+    }
+
 
     //PRIVATE METHODS //////////////////////////////////////////////////////////////////////////////
 
@@ -100,16 +115,21 @@ public class PoolersStatsTablesManager {
      */
     private void getPoolersNames(Element websiteGeneralTable, PoolersStats poolersStats){
         String allNames;
+        String[] separatedNames;
         if(isLive){
             Element live = document.select(".titre").first().parent();
             Element tableLive = document.select(live.cssSelector() + " .t10gc").first().parent().parent();
             allNames = document.select(tableLive.cssSelector() + " .t12b_n").text();
+            separatedNames = allNames.split(" ");
+            poolersStats.nPoolers = separatedNames.length / 2;
+            allNames = document.select(websiteGeneralTable.cssSelector() + " .t12b_n").text();
+            separatedNames = allNames.split(" ");
         }
         else {
             allNames = document.select(websiteGeneralTable.cssSelector() + " .t12b_n").text();
+            separatedNames = allNames.split(" ");
+            poolersStats.nPoolers = separatedNames.length / 2;
         }
-        String[] separatedNames = allNames.split(" ");
-        poolersStats.nPoolers = separatedNames.length / 2;
         String[] poolersNames = new String[poolersStats.nPoolers];
         for(int i=0; i<poolersStats.nPoolers; i++){
             poolersNames[i] = separatedNames[i*2];

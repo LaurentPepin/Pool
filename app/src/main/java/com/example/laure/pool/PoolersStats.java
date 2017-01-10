@@ -12,12 +12,4 @@ public class PoolersStats {
     int[] lastestPTS;
     int[] totalGP;
     int[] totalPTS;
-
-
-
-
-
-
-
-
 }

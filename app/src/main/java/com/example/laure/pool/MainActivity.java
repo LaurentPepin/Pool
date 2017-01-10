@@ -21,14 +21,14 @@ public class MainActivity extends AppCompatActivity {
         TableLayout tableLayoutOverallStats = (TableLayout) findViewById(R.id.tableLayoutOverallStats);
         TableLayout tableLayoutTotalStats = (TableLayout) findViewById(R.id.tableLayoutTotalStats);
         TableLayout tableLayoutLastestStats = (TableLayout) findViewById(R.id.tableLayoutLastestStats);
-        //TableLayout tableLayoutYesterdayPlayers = (TableLayout) findViewById(R.id.tableLayoutYesterdayPlayersTable);
+        TableLayout tableLayoutLastestBestPlayers = (TableLayout) findViewById(R.id.tableLayoutYesterdayPlayersTable);
 
         TextView textViewOverallStatsTableSubtitle = (TextView) findViewById(R.id.textViewOverallStatsTableSubtitle);
         TextView textViewLastestStatsTableTitle = (TextView) findViewById(R.id.textViewLastestStatsTableTitle);
         TextView textViewLastestBestPlayersTableTitle = (TextView) findViewById(R.id.textViewLastestBestPlayersTableTitle);
 
         InformationGetter informationGetter = new InformationGetter(this,tableLayoutOverallStats, tableLayoutTotalStats, tableLayoutLastestStats,
-                textViewOverallStatsTableSubtitle, textViewLastestStatsTableTitle, textViewLastestBestPlayersTableTitle);
+                tableLayoutLastestBestPlayers, textViewOverallStatsTableSubtitle, textViewLastestStatsTableTitle, textViewLastestBestPlayersTableTitle);
         informationGetter.execute();
     }
     /*

@@ -22,62 +22,19 @@ import org.jsoup.nodes.Element;
  */
 public class InformationGetter extends AsyncTask<Void,Void,Void> {
 
-
+    Data data = new Data();
     boolean isLive = false;
-    String TAG = "InformationGetter";
     Context context;
+    Views views;
 
-    TableLayout tableLayoutOverallStats;
-    TableLayout tableLayoutTotalStats;
-    TableLayout tableLayoutLastestStats;
-    TableLayout tableLayoutLastestBestPlayers;
-
-    TextView textViewOverallStatsTableSubtitle;
-    TextView textViewLastestStatsTableTitle;
-    TextView textViewLastestBestPlayersTableTitle;
-
-    PoolersStats poolersStats = new PoolersStats();
-    PlayersStats playersStats = new PlayersStats();
-
-    GeneralFunctions generalFunctions;
-    Document document;
-    PoolersStatsTablesManager poolersStatsTablesManager;
-
-    public InformationGetter(Context context,
-                             TableLayout tableLayoutOverallStats,
-                             TableLayout tableLayoutTotalStats,
-                             TableLayout tableLayoutLastestStats,
-                             TableLayout tableLayoutLastestBestPlayers,
-                             TextView textViewOverallStatsTableSubtitle,
-                             TextView textViewLastestStatsTableTitle,
-                             TextView textViewLastestBestPlayersTableTitle
-                             ){
+    public InformationGetter(Context context, Views views){
         this.context = context;
-        this.tableLayoutOverallStats = tableLayoutOverallStats;
-        this.tableLayoutTotalStats = tableLayoutTotalStats;
-        this.tableLayoutLastestStats = tableLayoutLastestStats;
-        this.tableLayoutLastestBestPlayers = tableLayoutLastestBestPlayers;
-        this.textViewOverallStatsTableSubtitle = textViewOverallStatsTableSubtitle;
-        this.textViewLastestStatsTableTitle = textViewLastestStatsTableTitle;
-        this.textViewLastestBestPlayersTableTitle = textViewLastestBestPlayersTableTitle;
+        this.views = views;
     }
 
     @Override
     protected Void doInBackground(Void... voids) {
-        try {
-            document = Jsoup.connect("https://www.marqueur.com/poolpepin2015").get();
-
-            generalFunctions = new GeneralFunctions(document);
-
-            isLive = generalFunctions.checkIfLive();
-
-            poolersStatsTablesManager = new PoolersStatsTablesManager(context,isLive);
-            poolersStatsTablesManager.gatherPoolersStats(poolersStats, document);
-            poolersStatsTablesManager.gatherPlayersStats(poolersStats.nPoolers, playersStats, document);
-
-        }
-        catch (Exception e){e.printStackTrace();}
-
+        data.getData(isLive);
         return null;
     }
 
@@ -86,20 +43,79 @@ public class InformationGetter extends AsyncTask<Void,Void,Void> {
         super.onPostExecute(aVoid);
 
         if(isLive){
-            generalFunctions.changeTitlesToLive(textViewOverallStatsTableSubtitle, textViewLastestStatsTableTitle, textViewLastestBestPlayersTableTitle);
+            changeTitlesToLive(views);
         }
 
-        poolersStatsTablesManager = new PoolersStatsTablesManager(context, isLive);
-
-        poolersStatsTablesManager.createTable(poolersStats, 1,tableLayoutOverallStats);
-        poolersStatsTablesManager.createTable(poolersStats, 2,tableLayoutTotalStats);
-        poolersStatsTablesManager.createTable(poolersStats, 3,tableLayoutLastestStats);
-        //poolersStatsTablesManager.createTable(playersStats, 4, tableLayoutLastestBestPlayers);
-
-
+        createTable(data, 1,views.tableLayoutOverallStats);
+        createTable(data, 2,views.tableLayoutTotalStats);
+        createTable(data, 3,views.tableLayoutLastestStats);
+        //poolersDataTablesManager.createTable(playersStats, 4, tableLayoutLastestBestPlayers);
 
 
     }
+
+
+    /*
+    Change textViews text is games are live
+     */
+    private void changeTitlesToLive(Views views){
+        views.textViewOverallStatsTableSubtitle.setText("DIRECT");
+        views.textViewLastestStatsTableTitle.setText("EN DIRECT");
+        views.textViewLastestBestPlayersTableTitle.setText("MEILLEURS POINTEURS AUJOURD'HUI");
+    }
+
+    public void createTable(Data data, int tableNumber, TableLayout tableLayout){
+        TableLayout tableLayoutNew = new TableLayout(context);
+
+        for(int i=0; i<data.poolersData.nPoolers; i++){
+
+            TableRow tableRow = new TableRow(context);
+            tableRow.setGravity(Gravity.CENTER);
+            tableRow.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT, 1.0f));
+
+            setTableRowBackground(data.poolersData.nPoolers, i,tableRow);
+
+            selectTableRowFiller(data.poolersData, context, tableNumber,i,tableRow);
+
+            tableLayoutNew.addView(tableRow);
+        }
+        ScrollView scrollView = new ScrollView(context);
+        scrollView.addView(tableLayoutNew);
+        tableLayout.addView(scrollView);
+        tableLayout.setBackgroundResource(R.drawable.border);
+    }
+
+    private  void setTableRowBackground(int nPoolers, int i, TableRow tableRow){
+        if(i%2==1){
+            if(i==nPoolers-1){
+                tableRow.setBackgroundResource(R.drawable.lastrowodd);
+            }
+            else {
+                tableRow.setBackgroundResource(R.drawable.rowodd);
+            }
+        }
+        else{
+            if(i==nPoolers-1){
+                tableRow.setBackgroundResource(R.drawable.lastroweven);
+            }
+            else {
+                tableRow.setBackgroundResource(R.drawable.roweven);
+            }
+        }
+    }
+
+    private void selectTableRowFiller(PoolersData poolersData, Context context, int tableNumber, int i, TableRow tableRow){
+        if(tableNumber==1){
+            TableRowFiller.overallStatsTable(poolersData, context, i,tableRow);
+        }
+        else if(tableNumber==2){
+            TableRowFiller.totalStatsTable(poolersData, context, i,tableRow);
+        }
+        else if(tableNumber==3){
+            TableRowFiller.lastestStatsTable(poolersData, context, i,tableRow);
+        }
+    }
+
 /*
     public void setYesterdayPlayersTable(){
 

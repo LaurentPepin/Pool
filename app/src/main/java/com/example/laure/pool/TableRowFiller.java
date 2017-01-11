@@ -4,11 +4,9 @@ import android.content.Context;
 import android.support.v4.content.ContextCompat;
 import android.view.Gravity;
 import android.view.ViewGroup;
-import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-import org.jsoup.nodes.Document;
 
 /**
  * Created by laure on 2017-01-07.
@@ -16,13 +14,13 @@ import org.jsoup.nodes.Document;
 public class TableRowFiller {
 
     //PRIVATE ATTRIBUTES ///////////////////////////////////////////////////////////////////////////
-    private int[] lastestGPOrdered;
-    private int[] lastestPTSOrdered;
-    private String[] lastestPoolersOrdered;
+    private static int[] lastestGPOrdered;
+    private static int[] lastestPTSOrdered;
+    private static String[] lastestPoolersOrdered;
 
 
-
-    public void overallStatsTable(PoolersStats poolersStats, Context context, int i, TableRow tableRow){
+    //PUBLIC METHODS ///////////////////////////////////////////////////////////////////////////////
+    public static void overallStatsTable(PoolersData poolersData, Context context, int i, TableRow tableRow){
         for(int j=0; j<8; j++) {
             TextView textView = new TextView(context);
             textView.setGravity(Gravity.CENTER);
@@ -34,36 +32,36 @@ public class TableRowFiller {
                 layoutParams = new TableRow.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 0.05f);
                 textView.setBackgroundResource(R.drawable.borderright1);
             } else if (j == 1) {
-                text = " " + poolersStats.poolersNames[i];
+                text = " " + poolersData.poolersNames[i];
                 textView.setGravity(Gravity.NO_GRAVITY);
                 layoutParams = new TableRow.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 0.25f);
             } else if (j == 2) {
-                text = "" + poolersStats.lastestGP[i];
+                text = "" + poolersData.lastestGP[i];
                 textView.setBackgroundResource(R.drawable.borderleft2);
             } else if (j == 3) {
-                text = "" + poolersStats.lastestPTS[i];
+                text = "" + poolersData.lastestPTS[i];
                 textView.setBackgroundResource(R.drawable.bordermiddle1);
             } else if (j == 4) {
-                if(poolersStats.lastestGP[i]!=0) {
-                    double moy = poolersStats.lastestPTS[i] * 1.0f / poolersStats.lastestGP[i];
+                if(poolersData.lastestGP[i]!=0) {
+                    double moy = poolersData.lastestPTS[i] * 1.0f / poolersData.lastestGP[i];
                     text = String.format("%.2f", moy);
                 }
                 else {
                     text = "0.00";
                 }
             } else if (j == 5) {
-                text = "" + poolersStats.totalGP[i];
+                text = "" + poolersData.totalGP[i];
                 textView.setBackgroundResource(R.drawable.borderleft2);
             } else if (j == 6) {
-                text = "" + poolersStats.totalPTS[i];
-                if (i != poolersStats.nPoolers - 1) {
+                text = "" + poolersData.totalPTS[i];
+                if (i != poolersData.nPoolers - 1) {
                     textView.setBackgroundResource(R.drawable.maincolumn);
                 } else {
                     textView.setBackgroundResource(R.drawable.maincolumnlastrow);
                 }
             } else {
-                if(poolersStats.totalGP[i]!=0) {
-                    double moy = poolersStats.totalPTS[i] * 1.0f / poolersStats.totalGP[i];
+                if(poolersData.totalGP[i]!=0) {
+                    double moy = poolersData.totalPTS[i] * 1.0f / poolersData.totalGP[i];
                     text = String.format("%.2f", moy);
                 }
                 else {
@@ -78,7 +76,7 @@ public class TableRowFiller {
         }
     }
 
-    public void totalStatsTable(PoolersStats poolersStats, Context context, int i, TableRow tableRow){
+    public static void totalStatsTable(PoolersData poolersData, Context context, int i, TableRow tableRow){
         for(int j=0; j<6; j++) {
             TextView textView = new TextView(context);
             textView.setGravity(Gravity.CENTER);
@@ -90,22 +88,22 @@ public class TableRowFiller {
                 layoutParams = new TableRow.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 0.05f);
                 textView.setBackgroundResource(R.drawable.borderright1);
             } else if (j == 1) {
-                text = " " + poolersStats.poolersNames[i];
+                text = " " + poolersData.poolersNames[i];
                 textView.setGravity(Gravity.NO_GRAVITY);
                 layoutParams = new TableRow.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 0.35f);
             } else if (j == 2) {
-                text = "" + poolersStats.totalGP[i];
+                text = "" + poolersData.totalGP[i];
                 textView.setBackgroundResource(R.drawable.borderleft2);
             } else if (j == 3) {
-                text = "" + poolersStats.totalPTS[i];
-                if (i != poolersStats.nPoolers - 1) {
+                text = "" + poolersData.totalPTS[i];
+                if (i != poolersData.nPoolers - 1) {
                     textView.setBackgroundResource(R.drawable.maincolumn);
                 } else {
                     textView.setBackgroundResource(R.drawable.maincolumnlastrow);
                 }
             } else if (j == 4) {
-                if(poolersStats.totalGP[i]!=0) {
-                    double moy = poolersStats.totalPTS[i] * 1.0f / poolersStats.totalGP[i];
+                if(poolersData.totalGP[i]!=0) {
+                    double moy = poolersData.totalPTS[i] * 1.0f / poolersData.totalGP[i];
                     text = String.format("%.2f", moy);
                 }
                 else {
@@ -113,7 +111,7 @@ public class TableRowFiller {
                 }
 
             } else {
-                int dif = poolersStats.totalPTS[0] - poolersStats.totalPTS[i];
+                int dif = poolersData.totalPTS[0] - poolersData.totalPTS[i];
                 if (dif == 0) {
                     text = "-";
                 } else {
@@ -129,9 +127,9 @@ public class TableRowFiller {
         }
     }
 
-    public void lastestStatsTable(PoolersStats poolersStats, Context context, int i, TableRow tableRow){
+    public static void lastestStatsTable(PoolersData poolersData, Context context, int i, TableRow tableRow){
 
-        sortYesterdayStats(poolersStats);
+        sortYesterdayStats(poolersData);
 
         for(int j=0; j<6; j++){
             TextView textView = new TextView(context);
@@ -155,7 +153,7 @@ public class TableRowFiller {
             }
             else if (j==3){
                 text = "" + lastestPTSOrdered[i];
-                if(i!=poolersStats.nPoolers-1) {
+                if(i!=poolersData.nPoolers-1) {
                     textView.setBackgroundResource(R.drawable.maincolumn);
                 }
                 else {
@@ -190,30 +188,30 @@ public class TableRowFiller {
         }
     }
 
-    private void sortYesterdayStats(PoolersStats poolersStats){
+    private static void sortYesterdayStats(PoolersData poolersData){
 
-        lastestPTSOrdered = new int[poolersStats.nPoolers];
-        lastestGPOrdered = new int[poolersStats.nPoolers];
-        lastestPoolersOrdered = new String[poolersStats.nPoolers];
-        boolean[] done = new boolean[poolersStats.nPoolers];
+        lastestPTSOrdered = new int[poolersData.nPoolers];
+        lastestGPOrdered = new int[poolersData.nPoolers];
+        lastestPoolersOrdered = new String[poolersData.nPoolers];
+        boolean[] done = new boolean[poolersData.nPoolers];
 
-        for(int j=0; j<poolersStats.nPoolers;j++) {
+        for(int j=0; j<poolersData.nPoolers;j++) {
             int previousMax = 0;
             int maxIndex = 0;
-            for (int i = 0; i < poolersStats.nPoolers; i++) {
-                if (poolersStats.lastestPTS[i] > previousMax && !done[i]) {
-                    previousMax = poolersStats.lastestPTS[i];
+            for (int i = 0; i < poolersData.nPoolers; i++) {
+                if (poolersData.lastestPTS[i] > previousMax && !done[i]) {
+                    previousMax = poolersData.lastestPTS[i];
                     maxIndex = i;
                 }
-                else if(poolersStats.lastestPTS[i] >= previousMax && !done[i]){
-                    previousMax = poolersStats.lastestPTS[i];
+                else if(poolersData.lastestPTS[i] >= previousMax && !done[i]){
+                    previousMax = poolersData.lastestPTS[i];
                     maxIndex = i;
                 }
             }
             done[maxIndex] = true;
-            lastestPTSOrdered[j] = poolersStats.lastestPTS[maxIndex];
-            lastestGPOrdered[j] = poolersStats.lastestGP[maxIndex];
-            lastestPoolersOrdered[j] = poolersStats.poolersNames[maxIndex];
+            lastestPTSOrdered[j] = poolersData.lastestPTS[maxIndex];
+            lastestGPOrdered[j] = poolersData.lastestGP[maxIndex];
+            lastestPoolersOrdered[j] = poolersData.poolersNames[maxIndex];
 
 
         }

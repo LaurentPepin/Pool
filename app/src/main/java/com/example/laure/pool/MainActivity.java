@@ -18,17 +18,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        TableLayout tableLayoutOverallStats = (TableLayout) findViewById(R.id.tableLayoutOverallStats);
-        TableLayout tableLayoutTotalStats = (TableLayout) findViewById(R.id.tableLayoutTotalStats);
-        TableLayout tableLayoutLastestStats = (TableLayout) findViewById(R.id.tableLayoutLastestStats);
-        TableLayout tableLayoutLastestBestPlayers = (TableLayout) findViewById(R.id.tableLayoutYesterdayPlayersTable);
+        Views views = new Views();
 
-        TextView textViewOverallStatsTableSubtitle = (TextView) findViewById(R.id.textViewOverallStatsTableSubtitle);
-        TextView textViewLastestStatsTableTitle = (TextView) findViewById(R.id.textViewLastestStatsTableTitle);
-        TextView textViewLastestBestPlayersTableTitle = (TextView) findViewById(R.id.textViewLastestBestPlayersTableTitle);
+        views.tableLayoutOverallStats = (TableLayout) findViewById(R.id.tableLayoutOverallStats);
+        views.tableLayoutTotalStats = (TableLayout) findViewById(R.id.tableLayoutTotalStats);
+        views.tableLayoutLastestStats = (TableLayout) findViewById(R.id.tableLayoutLastestStats);
+        views.tableLayoutLastestBestPlayers = (TableLayout) findViewById(R.id.tableLayoutYesterdayPlayersTable);
 
-        InformationGetter informationGetter = new InformationGetter(this,tableLayoutOverallStats, tableLayoutTotalStats, tableLayoutLastestStats,
-                tableLayoutLastestBestPlayers, textViewOverallStatsTableSubtitle, textViewLastestStatsTableTitle, textViewLastestBestPlayersTableTitle);
+        views.textViewOverallStatsTableSubtitle = (TextView) findViewById(R.id.textViewOverallStatsTableSubtitle);
+        views.textViewLastestStatsTableTitle = (TextView) findViewById(R.id.textViewLastestStatsTableTitle);
+        views.textViewLastestBestPlayersTableTitle = (TextView) findViewById(R.id.textViewLastestBestPlayersTableTitle);
+
+
+        InformationGetter informationGetter = new InformationGetter(this,views);
         informationGetter.execute();
     }
     /*

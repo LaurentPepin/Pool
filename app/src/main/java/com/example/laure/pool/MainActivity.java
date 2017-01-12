@@ -22,16 +22,17 @@ public class MainActivity extends AppCompatActivity {
 
         views.tableLayoutOverallStats = (TableLayout) findViewById(R.id.tableLayoutOverallStats);
         views.tableLayoutTotalStats = (TableLayout) findViewById(R.id.tableLayoutTotalStats);
-        views.tableLayoutLastestStats = (TableLayout) findViewById(R.id.tableLayoutLastestStats);
-        views.tableLayoutLastestBestPlayers = (TableLayout) findViewById(R.id.tableLayoutYesterdayPlayersTable);
+        views.tableLayoutLiveStats = (TableLayout) findViewById(R.id.tableLayoutLiveStats);
+        views.tableLayoutYesterdayStats = (TableLayout) findViewById(R.id.tableLayoutYesterdayStats);
+        views.tableLayoutLiveBestPlayers = (TableLayout) findViewById(R.id.tableLayoutLiveBestPlayers);
+        views.tableLayoutYesterdayBestPlayers = (TableLayout) findViewById(R.id.tableLayoutYesterdayBestPlayers);
 
         views.textViewOverallStatsTableSubtitle = (TextView) findViewById(R.id.textViewOverallStatsTableSubtitle);
-        views.textViewLastestStatsTableTitle = (TextView) findViewById(R.id.textViewLastestStatsTableTitle);
-        views.textViewLastestBestPlayersTableTitle = (TextView) findViewById(R.id.textViewLastestBestPlayersTableTitle);
 
 
-        InformationGetter informationGetter = new InformationGetter(this,views);
-        informationGetter.execute();
+
+        BackgroundWorker backgroundWorker = new BackgroundWorker(this,views);
+        backgroundWorker.execute();
     }
     /*
     @Override

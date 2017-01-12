@@ -10,4 +10,5 @@
     <color name="white">#FFF</color>
     <color name="lightGrey">#e6e6e6</color>
     <color name="mainColumn">#a1abde</color>
+    <color name="greyText"> #666666</color>
 </resources>

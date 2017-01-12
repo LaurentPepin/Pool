@@ -1,5 +1,7 @@
 package com.example.laure.pool;
 
+import android.util.Log;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
@@ -12,15 +14,19 @@ public class Data {
 
     //PUBLIC ATTRIBUTES & METHODS //////////////////////////////////////////////////////////////////
     PoolersData poolersData;
+    PlayersData playersData;
 
-    public void getData(boolean isLive){
+    public boolean getData(){
+        boolean isLive = false;
         try {
             Document document = Jsoup.connect("https://www.marqueur.com/poolpepin2015").get();
             isLive = checkIfLive(document);
             poolersData = new PoolersData(document, isLive);
+            playersData = new PlayersData(document, poolersData.nPoolers, isLive);
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return isLive;
     }
 
 

@@ -1,6 +1,8 @@
 package com.example.laure.pool;
 
 
+import android.util.Log;
+
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
@@ -12,10 +14,14 @@ public class PoolersData {
     //PUBLIC ATTRIBUTES ///////////////////////////////////////////////////////////////////////////
     int nPoolers;
     String[] poolersNames;
-    int[] lastestGP;
-    int[] lastestPTS;
+    int[] liveGP;
+    int[] livePTS;
+    int[] yesterdayGP;
+    int[] yesterdayPTS;
     int[] totalGP;
     int[] totalPTS;
+
+    String[] yesterdayPoolersOrdered;
 
     /*
     Constructor
@@ -24,7 +30,7 @@ public class PoolersData {
 
         Element websiteGeneralTable = selectMainTable(document, isLive);
         getPoolersNames(document, websiteGeneralTable, isLive);
-        getpoolersData(document, websiteGeneralTable);
+        getPoolersData(document, websiteGeneralTable, isLive);
     }
 
 
@@ -37,7 +43,6 @@ public class PoolersData {
      */
     private Element selectMainTable(Document document, boolean isLive){
         if(isLive){
-            //findNPoolersLive(document);
             return document.select(".titre").get(1).parent().parent().parent().parent();
         }
         return document.select(".t12b_n").first().parent().parent().parent();
@@ -75,20 +80,51 @@ public class PoolersData {
     /*
     Get all the stats of the poolers
      */
-    private void getpoolersData(Document document, Element websiteGeneralTable){
+    private void getPoolersData(Document document, Element websiteGeneralTable, boolean isLive){
         String statistics = document.select(websiteGeneralTable.cssSelector() + " .t12nc").text();
         String[] separatedStats = statistics.split(" ");
-
-        lastestGP = new int[nPoolers];
-        lastestPTS = new int[nPoolers];
+        if(isLive){
+            liveGP = new int[nPoolers];
+            livePTS = new int[nPoolers];
+        }
+        yesterdayGP = new int[nPoolers];
+        yesterdayPTS = new int[nPoolers];
         totalGP = new int[nPoolers];
         totalPTS = new int[nPoolers];
 
         for(int i=0; i<nPoolers; i++){
-            lastestGP[i] = getIntegerValue(separatedStats[i*4]);
-            lastestPTS[i] = getIntegerValue(separatedStats[i*4+1]);
+            if(isLive){
+                liveGP[i] = getIntegerValue(separatedStats[i*4]);
+                livePTS[i] = getIntegerValue(separatedStats[i*4+1]);
+                getYesterdayPoolersData(document);
+                //yesterdayGP[i] = liveGP[i];
+                //yesterdayPTS[i] = livePTS[i];
+            }
+            else{
+                yesterdayGP[i] = getIntegerValue(separatedStats[i*4]);
+                yesterdayPTS[i] = getIntegerValue(separatedStats[i*4+1]);
+            }
             totalGP[i] = getIntegerValue(separatedStats[i*4+2]);
             totalPTS[i] = getIntegerValue(separatedStats[i*4+3]);
+        }
+    }
+
+
+    private void getYesterdayPoolersData(Document document){
+        Element yesterdayTable = document.select(".t24b_bl").get(6).parent().parent().parent();
+        String poolersData = document.select(yesterdayTable.cssSelector() + " .t12nc").text();
+        String[] stringsData = poolersData.split(" ");
+        for(int i=0; i<nPoolers; i++){
+            yesterdayGP[i] = getIntegerValue(stringsData[i*2]);
+            yesterdayPTS[i] = getIntegerValue(stringsData[i*2+1]);
+        }
+        yesterdayPoolersOrdered = new String[nPoolers];
+        String poolersNames = document.select(yesterdayTable.cssSelector() + " .t12b_n").text();
+        String[] poolersNamesSeparated = poolersNames.split(" ");
+        for(int i=0; i<nPoolers; i++){
+            poolersNamesSeparated[i] = poolersNamesSeparated[i*2];
+            poolersNamesSeparated[i] = formatStringToNormal(poolersNamesSeparated[i]);
+            yesterdayPoolersOrdered[i] = poolersNamesSeparated[i];
         }
     }
 

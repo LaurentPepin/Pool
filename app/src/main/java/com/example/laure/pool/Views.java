@@ -10,11 +10,11 @@ public class Views {
 
     TableLayout tableLayoutOverallStats;
     TableLayout tableLayoutTotalStats;
-    TableLayout tableLayoutLastestStats;
-    TableLayout tableLayoutLastestBestPlayers;
+    TableLayout tableLayoutLiveStats;
+    TableLayout tableLayoutYesterdayStats;
+    TableLayout tableLayoutLiveBestPlayers;
+    TableLayout tableLayoutYesterdayBestPlayers;
 
     TextView textViewOverallStatsTableSubtitle;
-    TextView textViewLastestStatsTableTitle;
-    TextView textViewLastestBestPlayersTableTitle;
 
 }

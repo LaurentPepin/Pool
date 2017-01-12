@@ -175,7 +175,7 @@
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:background="@drawable/border"
-                        android:text="CUMULATIF"
+                        android:text="TOTAL"
                         android:textColor="@color/white"
                         android:paddingLeft="5dp"
                         android:textStyle="bold"
@@ -272,7 +272,7 @@
                 android:layout_height="match_parent"
                 android:layout_below="@+id/tableLayoutTotalStats"
                 android:layout_marginTop="30dp"
-                android:id="@+id/tableLayoutLastestStats"
+                android:id="@+id/tableLayoutLiveStats"
                 >
                 <TableRow
                     android:layout_width="match_parent"
@@ -286,7 +286,205 @@
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:background="@drawable/border"
-                        android:id="@+id/textViewLastestStatsTableTitle"
+                        android:text="EN DIRECT"
+                        android:paddingLeft="5dp"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text=""
+                        android:background="@drawable/border"
+                        android:textColor="@color/white"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text=""
+                        android:background="@drawable/border"
+                        android:textColor="@color/white"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:layout_weight="1" />
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/titlerowsec"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text=""
+                        android:textColor="@color/white"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:layout_weight="0.05" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text=" Poolers"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:layout_weight="0.35" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="PJ"
+                        android:background="@drawable/borderleft2"
+                        android:textColor="@color/white"
+                        android:gravity="center"
+                        android:layout_weight="0.15" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="PTS"
+                        android:background="@drawable/bordermiddle1"
+                        android:textColor="@color/white"
+                        android:gravity="center"
+                        android:layout_weight="0.15" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="MOY"
+                        android:textColor="@color/white"
+                        android:gravity="center"
+                        android:layout_weight="0.15" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="DIF"
+                        android:background="@drawable/bordermiddle1"
+                        android:textColor="@color/white"
+                        android:gravity="center"
+                        android:layout_weight="0.15" />
+                </TableRow>
+            </TableLayout>
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/tableLayoutLiveStats"
+                android:layout_marginTop="30dp"
+                android:id="@+id/tableLayoutLiveBestPlayers"
+                >
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorTitle"
+                    android:padding="10px"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:background="@drawable/border"
+                        android:text="MEILLEURS POINTEURS EN DIRECT"
+                        android:paddingLeft="5dp"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:layout_weight="1" />
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/titlerowsec"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text=""
+                        android:textColor="@color/white"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:layout_weight="0.05" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text=" Pointeurs"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:layout_weight="0.45" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="Pooler"
+                        android:gravity="center"
+                        android:background="@drawable/borderleft1"
+                        android:textColor="@color/white"
+                        android:layout_weight="0.20" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="B"
+                        android:background="@drawable/bordermiddle1"
+                        android:textColor="@color/white"
+                        android:gravity="center"
+                        android:layout_weight="0.10" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="P"
+                        android:textColor="@color/white"
+                        android:gravity="center"
+                        android:layout_weight="0.10" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="PTS"
+                        android:background="@drawable/bordermiddle1"
+                        android:textColor="@color/white"
+                        android:gravity="center"
+                        android:layout_weight="0.10" />
+                </TableRow>
+            </TableLayout>
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/tableLayoutLiveBestPlayers"
+                android:layout_marginTop="30dp"
+                android:id="@+id/tableLayoutYesterdayStats"
+                >
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorTitle"
+                    android:padding="10px"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:background="@drawable/border"
                         android:text="HIER"
                         android:paddingLeft="5dp"
                         android:textColor="@color/white"
@@ -382,9 +580,9 @@
             <TableLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@+id/tableLayoutLastestStats"
+                android:layout_below="@+id/tableLayoutYesterdayStats"
                 android:layout_marginTop="30dp"
-                android:id="@+id/tableLayoutYesterdayPlayersTable"
+                android:id="@+id/tableLayoutYesterdayBestPlayers"
                 >
                 <TableRow
                     android:layout_width="match_parent"
@@ -399,7 +597,6 @@
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:background="@drawable/border"
                         android:text="MEILLEURS POINTEURS HIER"
-                        android:id="@+id/textViewLastestBestPlayersTableTitle"
                         android:paddingLeft="5dp"
                         android:textColor="@color/white"
                         android:textStyle="bold"
@@ -452,6 +649,7 @@
 
                 </TableRow>
             </TableLayout>
+
         </RelativeLayout>
     </ScrollView>
 

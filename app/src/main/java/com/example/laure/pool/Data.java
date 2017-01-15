@@ -15,6 +15,7 @@ public class Data {
     //PUBLIC ATTRIBUTES & METHODS //////////////////////////////////////////////////////////////////
     PoolersData poolersData;
     PlayersData playersData;
+    RecordsData recordsData;
 
     public boolean getData(){
         boolean isLive = false;
@@ -23,6 +24,7 @@ public class Data {
             isLive = checkIfLive(document);
             poolersData = new PoolersData(document, isLive);
             playersData = new PlayersData(document, poolersData.nPoolers, isLive);
+            recordsData = new RecordsData(document);
         } catch (IOException e) {
             e.printStackTrace();
         }

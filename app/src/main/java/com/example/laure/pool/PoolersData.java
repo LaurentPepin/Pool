@@ -14,6 +14,8 @@ public class PoolersData {
     //PUBLIC ATTRIBUTES ///////////////////////////////////////////////////////////////////////////
     int nPoolers;
     String[] poolersNames;
+    String[] poolersFirstNames;
+    String[] poolersLastNames;
     int[] liveGP;
     int[] livePTS;
     int[] yesterdayGP;
@@ -51,30 +53,32 @@ public class PoolersData {
     /*
     Get all the poolers first names and sets the number of poolers (nPoolers)
      */
-
     private void getPoolersNames(Document document, Element websiteGeneralTable, boolean isLive){
-        String allNames;
         String[] separatedNames;
         if(isLive){
             Element live = document.select(".titre").first().parent();
             Element tableLive = document.select(live.cssSelector() + " .t10gc").first().parent().parent();
-            allNames = document.select(tableLive.cssSelector() + " .t12b_n").text();
-            separatedNames = allNames.split(" ");
+            separatedNames = ModifyString.getStringArray(document.select(tableLive.cssSelector() + " .t12b_n").text());
             nPoolers = separatedNames.length / 2;
-            allNames = document.select(websiteGeneralTable.cssSelector() + " .t12b_n").text();
-            separatedNames = allNames.split(" ");
+            separatedNames = ModifyString.getStringArray(document.select(websiteGeneralTable.cssSelector() + " .t12b_n").text());
         }
         else {
-            allNames = document.select(websiteGeneralTable.cssSelector() + " .t12b_n").text();
-            separatedNames = allNames.split(" ");
+            separatedNames = ModifyString.getStringArray(document.select(websiteGeneralTable.cssSelector() + " .t12b_n").text());
             nPoolers = separatedNames.length / 2;
         }
-        String[] poolersNames = new String[nPoolers];
+        poolersFirstNames = new String[nPoolers];
+        poolersLastNames = new String[nPoolers];
+        poolersNames = new String[nPoolers];
         for(int i=0; i<nPoolers; i++){
-            poolersNames[i] = separatedNames[i*2];
-            poolersNames[i] = formatStringToNormal(poolersNames[i]);
+            poolersFirstNames[i] = ModifyString.transformToNormal(separatedNames[i*2]);
+            poolersLastNames[i] = ModifyString.transformToNormal(separatedNames[i*2+1]);
+            poolersNames[i] = "";
         }
-        this.poolersNames = poolersNames;
+        for(int i=0; i<nPoolers; i++){
+            poolersNames[i] = ModifyString.setPoolerName(i,poolersFirstNames, poolersLastNames,poolersNames);
+        }
+
+
     }
 
     /*
@@ -112,15 +116,13 @@ public class PoolersData {
 
     private void getYesterdayPoolersData(Document document){
         Element yesterdayTable = document.select(".t24b_bl").get(6).parent().parent().parent();
-        String poolersData = document.select(yesterdayTable.cssSelector() + " .t12nc").text();
-        String[] stringsData = poolersData.split(" ");
+        String[] stringsData = ModifyString.getStringArray(document.select(yesterdayTable.cssSelector() + " .t12nc").text());
         for(int i=0; i<nPoolers; i++){
             yesterdayGP[i] = getIntegerValue(stringsData[i*2]);
             yesterdayPTS[i] = getIntegerValue(stringsData[i*2+1]);
         }
         yesterdayPoolersOrdered = new String[nPoolers];
-        String poolersNames = document.select(yesterdayTable.cssSelector() + " .t12b_n").text();
-        String[] poolersNamesSeparated = poolersNames.split(" ");
+        String[] poolersNamesSeparated = ModifyString.getStringArray(document.select(yesterdayTable.cssSelector() + " .t12b_n").text());
         for(int i=0; i<nPoolers; i++){
             poolersNamesSeparated[i] = poolersNamesSeparated[i*2];
             poolersNamesSeparated[i] = formatStringToNormal(poolersNamesSeparated[i]);
@@ -151,5 +153,7 @@ public class PoolersData {
         }
         return Integer.parseInt(string);
     }
+
+
 
 }

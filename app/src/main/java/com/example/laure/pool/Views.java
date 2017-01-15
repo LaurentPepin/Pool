@@ -14,6 +14,10 @@ public class Views {
     TableLayout tableLayoutYesterdayStats;
     TableLayout tableLayoutLiveBestPlayers;
     TableLayout tableLayoutYesterdayBestPlayers;
+    TableLayout tableLayoutTotalBestPicks;
+    TableLayout tableLayoutFreeAgents;
+    TableLayout tableLayoutBestDaysRecords;
+    TableLayout tableLayoutBestMonthsRecords;
 
     TextView textViewOverallStatsTableSubtitle;
 

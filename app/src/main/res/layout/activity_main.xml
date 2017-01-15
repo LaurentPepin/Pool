@@ -41,7 +41,7 @@
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:background="@drawable/border"
-                        android:text="GÉNÉRAL"
+                        android:text="@string/generalTitle"
                         android:textColor="@color/white"
                         android:paddingLeft="5dp"
                         android:textStyle="bold"
@@ -51,7 +51,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="Hier"
+                        android:text="@string/hierSubtitle"
                         android:id="@+id/textViewOverallStatsTableSubtitle"
                         android:background="@drawable/border"
                         android:textColor="@color/white"
@@ -63,7 +63,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="Total"
+                        android:text="@string/totalSubtitle"
                         android:background="@drawable/border"
                         android:textColor="@color/white"
                         android:gravity="center"
@@ -89,17 +89,17 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:paddingLeft="4dp"
                         android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:text=" Poolers"
+                        android:text="@string/poolerSubtitle"
                         android:textColor="@color/white"
-                        android:textStyle="bold"
                         android:layout_weight="0.25" />
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:text="PJ"
+                        android:text="@string/pjSubtitle"
                         android:background="@drawable/borderleft2"
                         android:textColor="@color/white"
                         android:gravity="center"
@@ -108,7 +108,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:text="PTS"
+                        android:text="@string/ptsSubtitle"
                         android:background="@drawable/bordermiddle1"
                         android:textColor="@color/white"
                         android:gravity="center"
@@ -117,7 +117,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:text="MOY"
+                        android:text="@string/moySubtitle"
                         android:textColor="@color/white"
                         android:gravity="center"
                         android:layout_weight="0.1" />
@@ -126,7 +126,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:text="PJ"
+                        android:text="@string/pjSubtitle"
                         android:background="@drawable/borderleft2"
                         android:textColor="@color/white"
                         android:gravity="center"
@@ -135,7 +135,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:text="PTS"
+                        android:text="@string/ptsSubtitle"
                         android:background="@drawable/bordermiddle1"
                         android:textColor="@color/white"
                         android:gravity="center"
@@ -144,7 +144,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:text="MOY"
+                        android:text="@string/moySubtitle"
                         android:textColor="@color/white"
                         android:gravity="center"
                         android:layout_weight="0.1" />
@@ -175,7 +175,7 @@
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:background="@drawable/border"
-                        android:text="TOTAL"
+                        android:text="@string/totalTitle"
                         android:textColor="@color/white"
                         android:paddingLeft="5dp"
                         android:textStyle="bold"
@@ -223,16 +223,16 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:text=" Poolers"
+                        android:text="@string/poolerSubtitle"
+                        android:paddingLeft="4dp"
                         android:textColor="@color/white"
-                        android:textStyle="bold"
                         android:layout_weight="0.35" />
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:text="PJ"
+                        android:text="@string/pjSubtitle"
                         android:background="@drawable/borderleft2"
                         android:textColor="@color/white"
                         android:gravity="center"
@@ -241,7 +241,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:text="PTS"
+                        android:text="@string/ptsSubtitle"
                         android:background="@drawable/bordermiddle1"
                         android:textColor="@color/white"
                         android:gravity="center"
@@ -250,7 +250,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:text="MOY"
+                        android:text="@string/moySubtitle"
                         android:textColor="@color/white"
                         android:gravity="center"
                         android:layout_weight="0.15" />
@@ -259,7 +259,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:text="DIF"
+                        android:text="@string/difSubtitle"
                         android:background="@drawable/bordermiddle1"
                         android:textColor="@color/white"
                         android:gravity="center"
@@ -286,7 +286,7 @@
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:background="@drawable/border"
-                        android:text="EN DIRECT"
+                        android:text="@string/en_directSubtitle"
                         android:paddingLeft="5dp"
                         android:textColor="@color/white"
                         android:textStyle="bold"
@@ -334,16 +334,16 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:text=" Poolers"
+                        android:text="@string/poolerSubtitle"
+                        android:paddingLeft="4dp"
                         android:textColor="@color/white"
-                        android:textStyle="bold"
                         android:layout_weight="0.35" />
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:text="PJ"
+                        android:text="@string/pjSubtitle"
                         android:background="@drawable/borderleft2"
                         android:textColor="@color/white"
                         android:gravity="center"
@@ -352,7 +352,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:text="PTS"
+                        android:text="@string/ptsSubtitle"
                         android:background="@drawable/bordermiddle1"
                         android:textColor="@color/white"
                         android:gravity="center"
@@ -361,7 +361,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:text="MOY"
+                        android:text="@string/moySubtitle"
                         android:textColor="@color/white"
                         android:gravity="center"
                         android:layout_weight="0.15" />
@@ -370,7 +370,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:text="DIF"
+                        android:text="@string/difSubtitle"
                         android:background="@drawable/bordermiddle1"
                         android:textColor="@color/white"
                         android:gravity="center"
@@ -397,7 +397,7 @@
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:background="@drawable/border"
-                        android:text="MEILLEURS POINTEURS EN DIRECT"
+                        android:text="@string/meilleurs_pointeurs_en_directTitle"
                         android:paddingLeft="5dp"
                         android:textColor="@color/white"
                         android:textStyle="bold"
@@ -423,16 +423,16 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:text=" Pointeurs"
+                        android:text="@string/pointeurSubtitle"
                         android:textColor="@color/white"
-                        android:textStyle="bold"
+                        android:paddingLeft="4dp"
                         android:layout_weight="0.45" />
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:text="Pooler"
+                        android:text="@string/poolerSubtitle"
                         android:gravity="center"
                         android:background="@drawable/borderleft1"
                         android:textColor="@color/white"
@@ -441,7 +441,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:text="B"
+                        android:text="@string/butSubtitle"
                         android:background="@drawable/bordermiddle1"
                         android:textColor="@color/white"
                         android:gravity="center"
@@ -450,7 +450,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:text="P"
+                        android:text="@string/passeSubtitle"
                         android:textColor="@color/white"
                         android:gravity="center"
                         android:layout_weight="0.10" />
@@ -458,7 +458,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:text="PTS"
+                        android:text="@string/ptsSubtitle"
                         android:background="@drawable/bordermiddle1"
                         android:textColor="@color/white"
                         android:gravity="center"
@@ -485,7 +485,7 @@
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:background="@drawable/border"
-                        android:text="HIER"
+                        android:text="@string/hierTitle"
                         android:paddingLeft="5dp"
                         android:textColor="@color/white"
                         android:textStyle="bold"
@@ -533,16 +533,16 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:text=" Poolers"
+                        android:text="@string/poolerSubtitle"
+                        android:paddingLeft="4dp"
                         android:textColor="@color/white"
-                        android:textStyle="bold"
                         android:layout_weight="0.35" />
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:text="PJ"
+                        android:text="@string/pjSubtitle"
                         android:background="@drawable/borderleft2"
                         android:textColor="@color/white"
                         android:gravity="center"
@@ -551,7 +551,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:text="PTS"
+                        android:text="@string/ptsSubtitle"
                         android:background="@drawable/bordermiddle1"
                         android:textColor="@color/white"
                         android:gravity="center"
@@ -560,7 +560,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:text="MOY"
+                        android:text="@string/moySubtitle"
                         android:textColor="@color/white"
                         android:gravity="center"
                         android:layout_weight="0.15" />
@@ -569,7 +569,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:text="DIF"
+                        android:text="@string/difSubtitle"
                         android:background="@drawable/bordermiddle1"
                         android:textColor="@color/white"
                         android:gravity="center"
@@ -596,7 +596,7 @@
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:background="@drawable/border"
-                        android:text="MEILLEURS POINTEURS HIER"
+                        android:text="@string/meilleurs_pointeurs_hierTitle"
                         android:paddingLeft="5dp"
                         android:textColor="@color/white"
                         android:textStyle="bold"
@@ -622,16 +622,16 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:text=" Pointeurs"
+                        android:text="@string/pointeurSubtitle"
+                        android:paddingLeft="4dp"
                         android:textColor="@color/white"
-                        android:textStyle="bold"
                         android:layout_weight="0.50" />
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:text="Pooler"
+                        android:text="@string/poolerSubtitle"
                         android:background="@drawable/borderleft1"
                         android:textColor="@color/white"
                         android:gravity="center"
@@ -640,7 +640,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:text="PTS"
+                        android:text="@string/ptsSubtitle"
                         android:background="@drawable/bordermiddle1"
                         android:textColor="@color/white"
                         android:gravity="center"
@@ -648,6 +648,316 @@
 
 
                 </TableRow>
+            </TableLayout>
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/tableLayoutYesterdayBestPlayers"
+                android:layout_marginTop="30dp"
+                android:id="@+id/tableLayoutTotalBestPicks"
+                >
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorTitle"
+                    android:padding="10px"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:background="@drawable/border"
+                        android:text="@string/top_15_meilleurs_choixTitle"
+                        android:paddingLeft="5dp"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:layout_weight="1" />
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/titlerowsec"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text=""
+                        android:textColor="@color/white"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:layout_weight="0.05" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="@string/joueursSubtitle"
+                        android:paddingLeft="4dp"
+                        android:textColor="@color/white"
+                        android:layout_weight="0.50" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="@string/poolerSubtitle"
+                        android:background="@drawable/borderleft1"
+                        android:textColor="@color/white"
+                        android:gravity="center"
+                        android:layout_weight="0.35" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="@string/ptsSubtitle"
+                        android:background="@drawable/bordermiddle1"
+                        android:textColor="@color/white"
+                        android:gravity="center"
+                        android:layout_weight="0.10" />
+
+                </TableRow>
+            </TableLayout>
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/tableLayoutTotalBestPicks"
+                android:layout_marginTop="30dp"
+                android:id="@+id/tableLayoutTotalFreeAgents"
+                >
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorTitle"
+                    android:padding="10px"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:background="@drawable/border"
+                        android:text="@string/top_15_agents_libresTitle"
+                        android:paddingLeft="5dp"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:layout_weight="1" />
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/titlerowsec"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text=""
+                        android:textColor="@color/white"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:layout_weight="0.05" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="@string/joueursSubtitle"
+                        android:paddingLeft="4dp"
+                        android:textColor="@color/white"
+                        android:layout_weight="0.50" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="@string/positionSubtitle"
+                        android:background="@drawable/borderleft1"
+                        android:textColor="@color/white"
+                        android:gravity="center"
+                        android:layout_weight="0.35" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="@string/ptsSubtitle"
+                        android:background="@drawable/bordermiddle1"
+                        android:textColor="@color/white"
+                        android:gravity="center"
+                        android:layout_weight="0.10" />
+
+                </TableRow>
+            </TableLayout>
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/tableLayoutTotalFreeAgents"
+                android:layout_marginTop="30dp"
+                android:id="@+id/tableLayoutBestDaysRecords"
+                >
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorTitle"
+                    android:padding="10px"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:background="@drawable/border"
+                        android:text="@string/records_meilleures_journeesTitle"
+                        android:paddingLeft="5dp"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:layout_weight="1" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/titlerowsec"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text=""
+                        android:textColor="@color/white"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:layout_weight="0.05" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="@string/journeesSubtitle"
+                        android:paddingLeft="4dp"
+                        android:background="@drawable/borderright1"
+                        android:textColor="@color/white"
+                        android:layout_weight="0.40" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="@string/poolerSubtitle"
+                        android:background="@drawable/borderright1"
+                        android:textColor="@color/white"
+                        android:gravity="center"
+                        android:layout_weight="0.35" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="@string/pjSubtitle"
+                        android:textColor="@color/white"
+                        android:gravity="center"
+                        android:layout_weight="0.10" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:background="@drawable/borderleft1"
+                        android:text="@string/ptsSubtitle"
+                        android:textColor="@color/white"
+                        android:gravity="center"
+                        android:layout_weight="0.10" />
+
+                </TableRow>
+
+            </TableLayout>
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/tableLayoutBestDaysRecords"
+                android:layout_marginTop="30dp"
+                android:id="@+id/tableLayoutBestMonthsRecords"
+                >
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorTitle"
+                    android:padding="10px"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:background="@drawable/border"
+                        android:text="@string/records_meilleurs_moisTitle"
+                        android:paddingLeft="5dp"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:layout_weight="1" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/titlerowsec"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text=""
+                        android:textColor="@color/white"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:layout_weight="0.05" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="@string/moisSubtitle"
+                        android:paddingLeft="4dp"
+                        android:background="@drawable/borderright1"
+                        android:textColor="@color/white"
+                        android:layout_weight="0.40" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="@string/poolerSubtitle"
+                        android:background="@drawable/borderright1"
+                        android:textColor="@color/white"
+                        android:gravity="center"
+                        android:layout_weight="0.35" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="@string/pjSubtitle"
+                        android:textColor="@color/white"
+                        android:gravity="center"
+                        android:layout_weight="0.10" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="@string/ptsSubtitle"
+                        android:background="@drawable/borderleft1"
+                        android:textColor="@color/white"
+                        android:gravity="center"
+                        android:layout_weight="0.10" />
+
+                </TableRow>
+
             </TableLayout>
 
         </RelativeLayout>

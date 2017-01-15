@@ -59,6 +59,10 @@ public class BackgroundWorker extends AsyncTask<Void,Void,Void> {
         }
         createTable(data, 5, views.tableLayoutYesterdayStats);
         createTable(data, 6, views.tableLayoutYesterdayBestPlayers);
+        createTable(data, 7, views.tableLayoutTotalBestPicks);
+        createTable(data, 8, views.tableLayoutFreeAgents);
+        createTable(data, 9, views.tableLayoutBestDaysRecords);
+        createTable(data, 10, views.tableLayoutBestMonthsRecords);
     }
 
 
@@ -72,17 +76,33 @@ public class BackgroundWorker extends AsyncTask<Void,Void,Void> {
     public void createTable(Data data, int tableNumber, TableLayout tableLayout){
         TableLayout tableLayoutNew = new TableLayout(context);
 
-        for(int i=0; i<data.poolersData.nPoolers; i++){
+        if(tableNumber < 7) {
+            for (int i = 0; i < data.poolersData.nPoolers; i++) {
 
-            TableRow tableRow = new TableRow(context);
-            tableRow.setGravity(Gravity.CENTER);
-            tableRow.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT, 1.0f));
+                TableRow tableRow = new TableRow(context);
+                tableRow.setGravity(Gravity.CENTER);
+                tableRow.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT, 1.0f));
 
-            setTableRowBackground(data.poolersData.nPoolers, i,tableRow);
+                setTableRowBackground((data.poolersData.nPoolers-1), i, tableRow);
 
-            selectTableRowFiller(data, context, tableNumber,i,tableRow);
+                selectTableRowFiller(data, context, tableNumber, i, tableRow);
 
-            tableLayoutNew.addView(tableRow);
+                tableLayoutNew.addView(tableRow);
+            }
+        }
+        else {
+            for (int i = 0; i < 15; i++) {
+
+                TableRow tableRow = new TableRow(context);
+                tableRow.setGravity(Gravity.CENTER);
+                tableRow.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT, 1.0f));
+
+                setTableRowBackground(14, i, tableRow);
+
+                selectTableRowFiller(data, context, tableNumber, i, tableRow);
+
+                tableLayoutNew.addView(tableRow);
+            }
         }
         ScrollView scrollView = new ScrollView(context);
         scrollView.addView(tableLayoutNew);
@@ -90,9 +110,9 @@ public class BackgroundWorker extends AsyncTask<Void,Void,Void> {
         tableLayout.setBackgroundResource(R.drawable.border);
     }
 
-    private  void setTableRowBackground(int nPoolers, int i, TableRow tableRow){
+    private  void setTableRowBackground(int lastRow, int i, TableRow tableRow){
         if(i%2==1){
-            if(i==nPoolers-1){
+            if(i==lastRow){
                 tableRow.setBackgroundResource(R.drawable.lastrowodd);
             }
             else {
@@ -100,7 +120,7 @@ public class BackgroundWorker extends AsyncTask<Void,Void,Void> {
             }
         }
         else{
-            if(i==nPoolers-1){
+            if(i==lastRow){
                 tableRow.setBackgroundResource(R.drawable.lastroweven);
             }
             else {
@@ -128,13 +148,57 @@ public class BackgroundWorker extends AsyncTask<Void,Void,Void> {
         else if(tableNumber ==6){
             TableRowFiller.bestYesterdayPlayersTable(data.playersData, context, i, tableRow, data.poolersData.nPoolers);
         }
+        else if(tableNumber == 7){
+            TableRowFiller.totalBestPicksTable(data.playersData, context, i, tableRow);
+        }
+        else if(tableNumber == 8){
+            TableRowFiller.freeAgentsTable(data.playersData, context, i, tableRow);
+        }
+        else if(tableNumber == 9){
+            TableRowFiller.bestDaysRecordsTable(data.recordsData, context, i, tableRow);
+        }
+        else if(tableNumber == 10){
+            TableRowFiller.bestMonthsRecordsTable(data.recordsData, context, i, tableRow);
+        }
     }
 
 
-/*
+    private String formatStringToNormal (String string){
+        int maxLenght = 40;
+        String[] strings = string.split(" ");
+        string = strings[0];
+        string.toLowerCase();
+        string = string.substring(0,1).toUpperCase() + string.substring(1);
+        if(string.length() > maxLenght){
+            int index = string.indexOf('-');
+            if(index > 0){
+                string = string.substring(0,index+1) + string.substring(index+1,index+2).toUpperCase() + ".";
+            }
+            else {
+                string = string.substring(0,maxLenght-1);
+            }
+        }
+        return string;
+    }
 
 
 
-    */
+
+
+
+
+    private String formadtStringToNormal(String string){
+        string = string.toLowerCase();
+        string = string.substring(0,1).toUpperCase() + string.substring(1);
+        int index = string.indexOf('-');
+        if(index>0){
+            string = string.substring(0,index+1) + string.substring(index+1,index+2).toUpperCase() + ".";
+        }
+        return string;
+    }
+
+
+
+
 }
 

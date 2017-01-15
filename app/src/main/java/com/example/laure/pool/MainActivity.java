@@ -1,5 +1,6 @@
 package com.example.laure.pool;
 
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ScrollView;
@@ -26,6 +27,10 @@ public class MainActivity extends AppCompatActivity {
         views.tableLayoutYesterdayStats = (TableLayout) findViewById(R.id.tableLayoutYesterdayStats);
         views.tableLayoutLiveBestPlayers = (TableLayout) findViewById(R.id.tableLayoutLiveBestPlayers);
         views.tableLayoutYesterdayBestPlayers = (TableLayout) findViewById(R.id.tableLayoutYesterdayBestPlayers);
+        views.tableLayoutTotalBestPicks = (TableLayout) findViewById(R.id.tableLayoutTotalBestPicks);
+        views.tableLayoutFreeAgents = (TableLayout) findViewById(R.id.tableLayoutTotalFreeAgents);
+        views.tableLayoutBestDaysRecords = (TableLayout) findViewById(R.id.tableLayoutBestDaysRecords);
+        views.tableLayoutBestMonthsRecords = (TableLayout) findViewById(R.id.tableLayoutBestMonthsRecords);
 
         views.textViewOverallStatsTableSubtitle = (TextView) findViewById(R.id.textViewOverallStatsTableSubtitle);
 

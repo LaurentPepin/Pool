@@ -41,12 +41,45 @@ public class PlayersData {
             getPlayersLiveStats(document,nPoolers);
         }
         getYesterdayPoolersAndPoints(document,nPoolers,isLive);
-
+        getBestPicksInfo(document,nPoolers, isLive);
+        getFreeAgentsInfo(document, nPoolers, isLive);
     }
 
 
 
     //PRIVATE METHODS //////////////////////////////////////////////////////////////////////////////
+
+    private void getFreeAgentsInfo(Document document, int nPoolers, boolean isLive){
+        Element element;
+        if(isLive) {
+            element = document.select(".tooltip, .tooltipstered").get(nPoolers*2+15).parent().parent().parent();
+        }
+        else{
+            element = document.select(".tooltip, .tooltipstered").get(nPoolers+15).parent().parent().parent();
+        }
+        freeAgentsPosition = new String[15];
+        freeAgentsPTS = new int[15];
+        for(int i=0; i<15; i++){
+            freeAgentsPosition[i] = formatStringToNormal(document.select(element.cssSelector() + " .t10gr").get(i).text());
+            freeAgentsPTS[i] = getIntegerValue(document.select(element.cssSelector() + " .t12nc").get(i).text());
+        }
+    }
+
+    private void getBestPicksInfo(Document document, int nPoolers,  boolean isLive){
+        Element element;
+        if(isLive) {
+            element = document.select(".tooltip, .tooltipstered").get(nPoolers*2).parent().parent().parent();
+        }
+        else{
+            element = document.select(".tooltip, .tooltipstered").get(nPoolers).parent().parent().parent();
+        }
+        totalBestPlayersPoolers = new String[15];
+        totalBestPlayersPTS = new int[15];
+        for(int i=0; i<15; i++){
+            totalBestPlayersPoolers[i] = getFirstNameNormal(document.select(element.cssSelector() + " .t10g_n").get(i).text());
+            totalBestPlayersPTS[i] = getIntegerValue(document.select(element.cssSelector() + " .t12nc").get(i).text());
+        }
+    }
 
     private void getYesterdayPoolersAndPoints(Document document, int nPoolers, boolean isLive){
         Element element;
@@ -165,6 +198,12 @@ public class PlayersData {
             return 0;
         }
         return Integer.parseInt(string);
+    }
+
+
+    private String getFirstNameNormal (String string){
+        String[] names = string.split(" ");
+        return formatStringToNormal(names[0]);
     }
 
 
